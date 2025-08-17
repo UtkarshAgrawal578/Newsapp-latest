@@ -1,86 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {Link} from "react-router";
+import "./Navbar.css";
 const Navbar=(props)=>  {
 
   
-    
+    const [isOpen, setIsOpen] = useState(false);
+
 
 
     return (
-       <nav className={`navbar navbar-expand-lg fixed-top navbar-${props.back1} bg-${props.back1}`}>
-      <div className="container-fluid">
-        {/* Brand */}
-        <Link className="navbar-brand fw-bold" to="/">
+      <nav className="navbar">
+      <div className="nav-container">
+        {/* Logo */}
+        <Link to="/" className="nav-logo">
           NewsHub
         </Link>
 
-        {/* Toggler button */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* Navbar links */}
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/business">
-                Business
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/entertainment">
-                Entertainment
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/general">
-                General
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/health">
-                Health
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/science">
-                Science
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/sports">
-                Sports
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/technology">
-                Technology
-              </Link>
-            </li>
-          </ul>
-
-          {/* Toggle button for dark/light */}
-          {/* <button
-            type="button"
-            onClick={props.togglemode1}
-            className="btn btn-outline-dark bg-success text-danger"
-          >
-            {props.text1}
-          </button> */}
+        {/* Hamburger Icon */}
+        <div className="nav-toggle" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "✖" : "☰"}
         </div>
+
+        {/* Navigation Links */}
+        <ul className={`nav-links ${isOpen ? "active" : ""}`}>
+          <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+          <li><Link to="/business" onClick={() => setIsOpen(false)}>Business</Link></li>
+          <li><Link to="/entertainment" onClick={() => setIsOpen(false)}>Entertainment</Link></li>
+          <li><Link to="/general" onClick={() => setIsOpen(false)}>General</Link></li>
+          <li><Link to="/health" onClick={() => setIsOpen(false)}>Health</Link></li>
+          <li><Link to="/science" onClick={() => setIsOpen(false)}>Science</Link></li>
+          <li><Link to="/sports" onClick={() => setIsOpen(false)}>Sports</Link></li>
+          <li><Link to="/technology" onClick={() => setIsOpen(false)}>Technology</Link></li>
+
+          {/* Toggle Mode Button */}
+          {/* <li>
+            <button className="toggle-btn" onClick={props.togglemode1}>
+              {props.text1}
+            </button>
+          </li> */}
+        </ul>
       </div>
     </nav>
     )
