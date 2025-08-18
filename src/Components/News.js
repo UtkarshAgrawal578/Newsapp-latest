@@ -27,9 +27,9 @@ const News = (props) => {
   // ✅ Fetch news (calls backend API instead of NewsAPI directly)
   const updateNews = async () => {
     props.setProgress(10);
-
+ //https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}
     try {
-      const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+      const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
 
       let data = await fetch(url);
