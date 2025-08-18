@@ -59,7 +59,7 @@ const News = (props) => {
   const fetchMoreData = async () => {
     try {
       const nextPage = page + 1;
-      const url = `https:///newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+      const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}`;
       
       let data = await fetch(url);
       let parsedData = await data.json();
@@ -99,8 +99,8 @@ const News = (props) => {
               <div className="col-12 col-md-4 my-2" key={element.url}>
                 <NewsItem
                   title={element.title || ""}
-                  description={element.description}
-                  imageUrl={element.urlToImage}
+                  description={element.description.slice(0,201)}
+                  // imageUrl={element.urlToImage}
                   newsUrl={element.url}
                   author={element.author}
                   date={element.publishedAt}

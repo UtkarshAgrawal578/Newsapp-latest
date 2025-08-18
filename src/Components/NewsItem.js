@@ -4,7 +4,7 @@ const NewsItem =(props)=>{
 
 
   
-    let { title, description, imageUrl, newsUrl, author, date, source } = props;
+    let { title, description, newsUrl, author, date, source } = props;
     return (
       <div>
         <div className="card" style={{ width: "18rem" }}>
@@ -12,7 +12,7 @@ const NewsItem =(props)=>{
               {source}
               
             </span>
-          <img src={!imageUrl ? "https://image.cnbcfm.com/api/v1/image/108146251-174733164404-gettyimages-2214616600-AFP_46VQ37P.jpeg?v=1747331669&w=1920&h=1080" : imageUrl} className='card-img-top' alt="..." />
+          {/* <img src={!imageUrl ? "https://image.cnbcfm.com/api/v1/image/108146251-174733164404-gettyimages-2214616600-AFP_46VQ37P.jpeg?v=1747331669&w=1920&h=1080" : imageUrl} className='card-img-top' alt="..." /> */}
           <div className="card-body">
             <h5 className="card-title">{title} </h5>
             <p className="card-text">{description}</p>
