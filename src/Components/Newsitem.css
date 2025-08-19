@@ -1,0 +1,107 @@
+/* Container to center and handle multiple cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+
+/* Card Styling */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;   /* Limits width for desktop */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 0px;          /* some spacing from top */
+  right: 10px;       /* stick to right */
+  background: crimson;
+  color: white;
+  font-size: 0.7rem;  /* slightly smaller text */
+  padding: 3px 8px;   /* thinner look */
+  border-radius: 12px; /* pill shape but thinner */
+  font-weight: 500;
+}
+
+/* Image */
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Body */
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-footer {
+  font-size: 0.75rem;
+  color: #777;
+  margin: 8px 0;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  text-align: center;
+  background: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+    margin: 8px 0;
+  }
+  .card-img {
+    height: 150px;
+  }
+}
