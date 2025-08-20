@@ -28,6 +28,7 @@ const News = (props) => {
   const updateNews = async () => {
     props.setProgress(10);
  //https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}
+ //https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}
     try {
       const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
@@ -56,21 +57,21 @@ const News = (props) => {
   }, [props.category]);
 
   // ✅ Infinite Scroll handler
-  const fetchMoreData = async () => {
-    try {
-      const nextPage = page + 1;
-      const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}`;
+  // const fetchMoreData = async () => {
+  //   try {
+  //     const nextPage = page + 1;
+  //     const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=india&max=10&apikey=4477316f6b41523935f2f40821a380e1&page=${page}&pageSize=${props.pageSize}`;
       
-      let data = await fetch(url);
-      let parsedData = await data.json();
+  //     let data = await fetch(url);
+  //     let parsedData = await data.json();
 
-      setArticles(articles.concat(parsedData.articles || []));
-      setTotalResults(parsedData.totalResults || 0);
-      setPage(nextPage);
-    } catch (error) {
-      console.error("Error fetching more news:", error);
-    }
-  };
+  //     setArticles(articles.concat(parsedData.articles || []));
+  //     setTotalResults(parsedData.totalResults || 0);
+  //     setPage(nextPage);
+  //   } catch (error) {
+  //     console.error("Error fetching more news:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -86,8 +87,24 @@ const News = (props) => {
       </h1>
 
       {loading && <Spinner />}
-
-      <InfiniteScroll
+       <div className="container">
+          <div className="row">
+            {articles.map((element) => (
+              <div className="col-12 col-md-4 my-2" key={element.url}>
+                <NewsItem
+                  title={element.title || ""}
+                  description={element.description.slice(0,201)}
+                   imageUrl={element.urlToImage}
+                  newsUrl={element.url}
+                  author={element.author}
+                  date={element.publishedAt}
+                  source={element.source?.name?.slice(0, 17)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      {/* <InfiniteScroll
         dataLength={articles.length}
         next={fetchMoreData}
         hasMore={articles.length !== totalResults}
@@ -110,7 +127,7 @@ const News = (props) => {
             ))}
           </div>
         </div>
-      </InfiniteScroll>
+      </InfiniteScroll> */}
     </>
   );
 };
